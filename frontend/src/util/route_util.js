@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Navigate, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 
 // Passed in from parent component or from mapStateToProps
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
@@ -9,7 +9,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
       <Component {...props} />
     ) : (
         // Redirect to the tweets page if the user is authenticated
-      <Navigate to="/tweets" />
+      <Redirect to="/tweets" />
     )
   )} />
 );
@@ -21,8 +21,8 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
       loggedIn ? (
         <Component {...props} />
       ) : (
-        // Navigate to the login page if the user is already authenticated
-        <Navigate to="/login" />
+        // Redirect to the login page if the user is already authenticated
+        <Redirect to="/login" />
       )
     }
   />
